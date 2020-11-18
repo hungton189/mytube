@@ -2,15 +2,24 @@
 
 module.exports.login = (req,res) => 
 {
-    res.send('login');
+    res.render('users/login',
+    {
+        pageTitle:"Login"
+    });
 }
 
 module.exports.logout = (req,res) => 
 {
-    res.send('logout');
+    res.render('users/logout'),
+    {
+        pageTitle:"Logout"
+    };
 }
 
 module.exports.join = (req,res) => 
 {
-    res.send('join');
+    res.render('users/join',
+    {
+        pageTitle:"Join"
+    });
 }

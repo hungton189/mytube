@@ -1,9 +1,10 @@
 doctype html
 html
     header
-        title Mytube
+        title #{pageTitle} | MyTube
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.1/css/all.css")
     body
+        include ../partials/header
         main
             block content
-        footer
-            span &copy; Mytube
+        include ../partials/footer.pug

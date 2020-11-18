@@ -2,10 +2,18 @@
 
 module.exports.home = (req,res) => 
 {
-    res.render('home');
+    res.render('videos/home',
+    {
+        pageTitle: 'Home',
+    });
 }
 
 module.exports.search = (req,res) => 
 {
-    res.send('search');
+    const {query: {search}}  = req;
+    res.render('videos/search',
+    {
+        pageTitle: 'Search',
+        search
+    });
 }
