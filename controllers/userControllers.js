@@ -8,13 +8,7 @@ module.exports.login = (req,res) =>
     });
 }
 
-module.exports.logout = (req,res) => 
-{
-    res.render('users/logout'),
-    {
-        pageTitle:"Logout"
-    };
-}
+
 
 module.exports.join = (req,res) => 
 {
