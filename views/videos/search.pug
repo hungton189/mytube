@@ -1,3 +1,8 @@
 extends ../layouts/main.pug
 block content
     h1 searching for: #{search}
+    each video in videos
+        .videoBlock
+            video.videoBlock__thumbnail(src=video.videoFile,controls = true)
+            h4.videoBlock__title=video.title
+            h4.videoBlock__views=video.views

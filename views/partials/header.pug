@@ -7,7 +7,15 @@ header.header
             input(type="text",name="search",placeholder="Searching for.....")
     .header_column
         ul
-            li
-                a(href=routers.join) Join
-            li
-                a(href=routers.login) Log In
+            if !user.isAuthenticated
+                li
+                    a(href=routers.join) Join
+                li
+                    a(href=routers.login) Log In
+            else
+                li
+                    a(href=routers.uploadVideo) Upload
+                li
+                    a(href="/users/"+user.userId) Profile
+                li
+                    a(href=routers.logout) Log Out

@@ -1,7 +1,11 @@
-import express from 'express'
+import express from 'express';
+import routers from '../routers';
+import userControllers from '../controllers/userControllers';
 
 const userRouter = express.Router();
 
-userRouter.get("/",(req,res) => {res.send("index of user")})
+userRouter.get(routers.editProfile,userControllers.editProfile);
+userRouter.get(routers.changePassword,userControllers.changePassword);
+userRouter.get(routers.userDetail,userControllers.userDetail)
 
 module.exports = userRouter;

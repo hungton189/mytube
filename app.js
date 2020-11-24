@@ -15,7 +15,7 @@ const app = express()
 app.set('view engine', 'pug')
 app.use(helmet());  //lọc các header độc hại
 app.use(morgan("dev")); //log ra các request
-app.use(cookieParser());
+app.use(cookieParser("devbjhdbfbdjfb"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 

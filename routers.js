@@ -9,13 +9,13 @@ const LOGOUT = "/logout"
 
 //user
 const USERS = "/users"
-const USER_DETAIL = "/:id"
+const USER_DETAIL = "users/:id"
 const EDIT_PROFILE = "/edit-profile"
 const CHANGE_PASSWORD = "/change-password"
 
 //video
 const VIDEOS = "/videos"
-const VIDEO_DETAIL = "/:id"
+const VIDEO_DETAIL = "videos/:id"
 const EDIT_VIDEO = "/:id/edit-video"
 const UPLOAD_VIDEO = "/upload-video"
 const DELETE_VIDEO = "/:id/delete-video"

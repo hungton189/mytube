@@ -1,3 +1,11 @@
 extends ../layouts/main.pug
 block content
-    h1 upload
+    .form_container
+        form(action=routers.uploadVideo,method="post")
+            label(for="video") Video:
+            input(type="file", name="video")
+            label(for="title") Title:
+            input(type="text", name="title",placeholder="Title")
+            label(for="description") Description:
+            textarea(name="description", cols="30", rows="5" placeholder="Description")
+            input(type="submit" value="Upload Now")
