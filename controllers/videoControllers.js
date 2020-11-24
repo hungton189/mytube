@@ -28,6 +28,12 @@ module.exports.uploadVideo = (req,res) =>
     });
 }
 
+module.exports.postUploadVideo = (req,res) => 
+{
+    //add video to database
+    res.redirect("/videos/12354523");   //redirect to new video detail
+}
+
 module.exports.editVideo = (req,res) => 
 {
     res.render('videos/editVideo',
@@ -45,3 +51,4 @@ module.exports.videoDetail = (req,res) =>
         videoId
     });
 }
+

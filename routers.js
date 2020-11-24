@@ -16,9 +16,9 @@ const CHANGE_PASSWORD = "/change-password"
 //video
 const VIDEOS = "/videos"
 const VIDEO_DETAIL = "/videos/:id"
-const EDIT_VIDEO = "/:id/edit-video"
-const UPLOAD_VIDEO = "/upload-video"
-const DELETE_VIDEO = "/:id/delete-video"
+const EDIT_VIDEO = "/videos/:id/edit-video"
+const UPLOAD_VIDEO = "/videos/upload-video"
+const DELETE_VIDEO = "videos/:id/delete-video"
 
 const routers = 
 {

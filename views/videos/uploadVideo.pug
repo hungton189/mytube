@@ -3,9 +3,9 @@ block content
     .form_container
         form(action=routers.uploadVideo,method="post")
             label(for="video") Video:
-            input(type="file", name="video")
+            input(type="file", name="video" required="true")
             label(for="title") Title:
-            input(type="text", name="title",placeholder="Title")
+            input(type="text", name="title",placeholder="Title" required="true")
             label(for="description") Description:
-            textarea(name="description", cols="30", rows="5" placeholder="Description")
+            textarea(name="description", cols="30", rows="5" placeholder="Description" required="true")
             input(type="submit" value="Upload Now")

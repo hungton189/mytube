@@ -5,7 +5,7 @@ block content
             p=error
     .form_container
         form(action="/login",method="post")
-            input(type="text", name="email",placeholder="Email" value=value?value.email:"")
-            input(type="password", name="password",placeholder="Password" value=value?value.password:"")
+            input(type="text", name="email",placeholder="Email" value=value?value.email:"" required="true")
+            input(type="password", name="password",placeholder="Password" value=value?value.password:"" required="true")
             input(type="submit" value="Log In")
     include ../partials/socialLogin

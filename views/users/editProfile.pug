@@ -3,10 +3,10 @@ block content
     .form-control
         form(action=routers.editProfile, method="post")
             label(for = "avatar") Avatar:
-            input(type="file",name="avatar")
+            input(type="file",name="avatar" required="true")
             label(for = "name") Name:
-            input(type="text",name="name")
+            input(type="text",name="name" required="true")
             label(for = "email") Email:
-            input(type="text",name="email")
+            input(type="text",name="email" required="true")
             input(type="submit" value="Update Profile")
     a.change-password(href="/users/change-password") Change Password

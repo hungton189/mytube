@@ -33,9 +33,11 @@ module.exports.changePassword = (req,res) =>
 
 module.exports.userDetail = (req,res) => 
 {
+    const userId = req.params.id;
     res.render('users/userDetail',
     {
-        pageTitle:"User Detail"
+        pageTitle:"Profile",
+        userId
     });
 }
 
