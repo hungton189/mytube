@@ -35,3 +35,13 @@ module.exports.editVideo = (req,res) =>
         pageTitle: 'Edit'
     });
 }
+
+module.exports.videoDetail = (req,res) => 
+{
+    const videoId = req.params.id;
+    res.render('videos/videoDetail',
+    {
+        pageTitle: 'Video Detail',
+        videoId
+    });
+}

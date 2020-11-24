@@ -21,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.use(middleware.locals);
+app.use(routers.videos,videoRouter);
 app.use(routers.home,globalRouter);
 app.use(routers.users,userRouter);
-app.use(routers.videos,videoRouter);
 
 
 module.exports = app;
