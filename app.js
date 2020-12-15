@@ -14,6 +14,7 @@ const app = express()
 
 app.set('view engine', 'pug')
 app.use("/uploads",express.static("uploads"))
+app.use("/static",express.static("static"))
 app.use(helmet());  //lọc các header độc hại
 app.use(morgan("dev")); //log ra các request
 app.use(cookieParser("devbjhdbfbdjfb"));

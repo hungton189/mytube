@@ -43,9 +43,6 @@ module.exports.uploadVideo = (req,res) =>
 
 module.exports.postUploadVideo = async (req, res) =>  
 {
-    //add video to database
-    console.log(req.body);
-    console.log(req.file);
     const   {
                 body:{title,description},
                 file:{destination,filename}
@@ -88,14 +85,22 @@ module.exports.postEditVideo = async(req, res, next) =>
 
 }
 
-module.exports.videoDetail = (req,res) => 
+module.exports.videoDetail = async(req,res) => 
 {
     const videoId = req.params.id;
-    res.render('videos/videoDetail',
+    const video = await Video.findById(videoId);
+    try {
+        res.render('videos/videoDetail',
     {
         pageTitle: 'Video Detail',
-        videoId
+        video
     });
+    } catch (error) {
+        res.render('videos/videoDetail',
+        {
+            error: "Không tìm thấy video",
+        })
+    }
 }
 
 module.exports.deleteVideo = async(req,res) =>
