@@ -1,9 +1,12 @@
 extends ../layouts/main.pug
 block content
     h1 searching for: #{search}
+    if videos.length === 0
+        h5 No Video Found
     each video in videos
         .videoBlock
+            h1=video.length
             a(href="/videos/"+video.id)
-                video.videoBlock__thumbnail(src=video.videoFile,controls = true)
+                video.videoBlock__thumbnail(src=video.fileUrl,controls = true)
                 h4.videoBlock__title=video.title
                 h4.videoBlock__views=video.views

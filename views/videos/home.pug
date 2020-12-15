@@ -4,6 +4,6 @@ block content
 	each video in videos
 		.video-block
 			a(href="/videos/"+video.id)
-				video.videoBlock__thumbnail(src=video.videoFile,controls = true)
+				video.videoBlock__thumbnail(src=video.fileUrl,controls = true)
 				h4.videoBlock__title=video.title
 				h4.videoBlock__views=video.views

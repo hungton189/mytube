@@ -1,9 +1,9 @@
 extends ../layouts/main.pug
 block content
     .form_container
-        form(action=routers.uploadVideo,method="post")
+        form(action=routers.uploadVideo,method="post",enctype="multipart/form-data")
             label(for="video") Video:
-            input(type="file", name="video" required="true")
+            input(type="file", name="videoFile" required="true" accept="video/*")
             label(for="title") Title:
             input(type="text", name="title",placeholder="Title" required="true")
             label(for="description") Description:

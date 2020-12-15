@@ -1,3 +1,4 @@
+import multer from "multer";
 import routers from "./routers"
 
 module.exports.locals = (req, res , next) =>
@@ -18,3 +19,6 @@ module.exports.locals = (req, res , next) =>
     }
     next();
 }
+
+const multerVideo = multer({ dest: 'uploads/Videos/' });
+module.exports.uploadVideo = multerVideo.single("videoFile");

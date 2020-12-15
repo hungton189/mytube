@@ -1,3 +1,18 @@
 extends ../layouts/main.pug
 block content
+<<<<<<< HEAD
+    .video__player
+        video(src=`/${video.fileUrl}`,controls = true)
+    .video__info
+        a(href=`/videos/${video.id}/edit`) Edit video
+        h5.video__title=video.title
+        span.video__views #{video.views} views
+        h5.video__description=video.description
+    .video__comment
+        if video.comments.length === 0
+            span.video__comment-number 0 comment
+        else
+            span.video__comment-number #{video.comments.length} comment
+=======
     h1=videoId
+>>>>>>> parent of 88ca145 (videoDetail)
