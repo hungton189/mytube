@@ -1,4 +1,5 @@
 node_modules
+static
 # Logs
 logs
 *.log
@@ -117,4 +118,3 @@ dist
 .pnp.*
 package-lock.json
 uploads
-static

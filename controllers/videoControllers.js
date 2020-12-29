@@ -5,7 +5,6 @@ module.exports.home = async(req,res) =>
     try 
     {
         const videos = await Video.find({});
-        console.log(videos)
         res.render('videos/home',{pageTitle: 'Home',videos});
     }
     catch (error) 
