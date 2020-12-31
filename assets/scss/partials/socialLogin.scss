@@ -1,0 +1,35 @@
+.social_login
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width:320px;
+    margin-top: 40px;
+    .social_icon
+    {
+        width: 100%;
+        padding:8px;
+        border: none;
+        color:white;
+        margin-bottom: 16px;
+        border-radius: 3px;
+        transition-duration: 0.2s;
+        span
+        {
+            margin-right: 8px;
+        }
+        &:hover
+        {
+            opacity: 0.7;
+        }
+    }
+    .social_icon_github
+    {
+        background-color:$black;
+    }
+    .social_icon_facebook
+    {
+        background-color:#4141ca;
+    }
+}
