@@ -2,10 +2,10 @@ extends ../layouts/main.pug
 block content
     .form_container
         form(action=routers.uploadVideo,method="post",enctype="multipart/form-data")
-            label(for="video") Video:
+            span.text(for="video") Video:
             input(type="file", name="videoFile" required="true" accept="video/*")
-            label(for="title") Title:
+            span.text(for="title") Title:
             input(type="text", name="title",placeholder="Title" required="true")
-            label(for="description") Description:
+            span.text(for="description") Description:
             textarea(name="description", cols="30", rows="5" placeholder="Description" required="true")
             input(type="submit" value="Upload Now")

@@ -1,9 +1,11 @@
 extends ../layouts/main.pug
 include ../mixins/videoBlock
 block content
-	each video in videos
-		.video-block
-			a(href="/videos/"+video.id)
-				video.videoBlock__thumbnail(src=video.fileUrl,controls = true)
-				h4.videoBlock__title=video.title
-				h4.videoBlock__views=video.views
+	.home_video
+		each video in videos
+			.video_block
+				video.videoBlock_thumbnail(src=video.fileUrl,controls = true,width ="650px")
+				a.video_info(href="/videos/"+video.id)
+					h4.video_title=video.title
+					h4.video_views #{video.views} views
+			

@@ -4,7 +4,7 @@ import userControllers from '../controllers/userControllers';
 
 const userRouter = express.Router();
 
-userRouter.get(routers.editProfile,userControllers.editProfile);
+userRouter.get("/edit-profile",userControllers.editProfile);
 userRouter.get(routers.changePassword,userControllers.changePassword);
 userRouter.get("/:id",userControllers.userDetail)
 

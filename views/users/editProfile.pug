@@ -1,6 +1,6 @@
 extends ../layouts/main.pug
 block content
-    .form-control
+    .form_container
         form(action=routers.editProfile, method="post")
             label(for = "avatar") Avatar:
             input(type="file",name="avatar" required="true")
@@ -9,4 +9,4 @@ block content
             label(for = "email") Email:
             input(type="text",name="email" required="true")
             input(type="submit" value="Update Profile")
-    a.change-password(href="/users/change-password") Change Password
+            a.change_password(href="/users/change-password") Change Password
