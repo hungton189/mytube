@@ -1,8 +1,8 @@
 extends ../layouts/main.pug
 block content
-    .form__container
+    .form_container
         form(action=`/videos/${video.id}/edit`,method="post")
-            input(type="text", name="title",value=video.title,required="true")
-            textarea(name="description")=video.description
+            input(type="text", name="title",value=video.title,required="true" placeholder="title")
+            textarea(name="description" placeholder="description")=video.description
             input(type="submit",value="Update Video")
-        a.form__link__delete(href=`/videos/${video.id}/delete`) Delete Video
+            a.form_link_delete(href=`/videos/${video.id}/delete`) Delete Video
