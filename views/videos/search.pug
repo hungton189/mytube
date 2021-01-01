@@ -1,12 +1,13 @@
 extends ../layouts/main.pug
 block content
-    h1 searching for: #{search}
-    if videos.length === 0
-        h5 No Video Found
-    each video in videos
-        .videoBlock
-            h1=video.length
-            a(href="/videos/"+video.id)
-                video.videoBlock__thumbnail(src=video.fileUrl,controls = true)
-                h4.videoBlock__title=video.title
-                h4.videoBlock__views=video.views
+    .home_video
+        h1.search_name Searching for #{search}
+        if videos.length === 0
+            h5.search_no_video No Video Found
+        else
+            each video in videos
+                .video_block
+                    video.videoBlock_thumbnail(src=video.fileUrl,controls = true,width ="650px")
+                    a.video_info(href="/videos/"+video.id)
+                        h4.video_title=video.title
+                        h4.video_views #{video.views} views

@@ -29,4 +29,24 @@
             }
         }
     }
+    .search_name 
+    {
+        margin-bottom: 16px;
+        display: block;
+        width: 100%;
+        max-width:650px;
+        color: $black;
+        font-size: 18px;
+        font-weight: 500;
+        font-style: italic;
+    }
+    .search_no_video
+    {
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        max-width:650px;
+        color: $black;
+
+    }
 }
