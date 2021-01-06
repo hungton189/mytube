@@ -13,7 +13,6 @@ module.exports.login = (req,res) =>
 module.exports.logout = (req,res) => 
 {
     req.session.destroy(()=>{res.redirect("/");});
-
 }
 
 module.exports.join = (req,res) => 
