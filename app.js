@@ -3,6 +3,9 @@ import morgan from 'morgan';
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import passport from "passport";
+
+import "./passport"
 
 import middleware from "./middleware";
 import routers from "./routers"
@@ -21,6 +24,8 @@ app.use(cookieParser("devbjhdbfbdjfb"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(middleware.locals);
 app.use(routers.videos,videoRouter);

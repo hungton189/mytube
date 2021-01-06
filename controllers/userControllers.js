@@ -1,5 +1,6 @@
 // login logout join /users
-
+import User from "../models/User";
+import passport from "passport";
 
 module.exports.login = (req,res) => 
 {
@@ -49,18 +50,37 @@ module.exports.editProfile = (req,res) =>
     });
 }
 
-module.exports.postJoin = (req,res) => 
+module.exports.postJoin = async (req,res,next) => 
 {
-    //register user into database
-    //login for user
-    res.redirect('/login');
+    const {body:{name, email, password,password2}} = req;
+    if(password !== password2)
+    {
+        res.status(400);
+        res.render('users/join',
+        {
+            pageTitle:"Join"
+        });
+    }
+    else
+    {
+        try 
+        {
+            const user = await User({name,email});
+            await User.register(user,password);
+            next();
+        } 
+        catch (error) 
+        {
+            res.render('users/join',
+            {
+                pageTitle:"Join",
+                error:["Email đã tồn tại"]
+            });
+        }
+    }
 }
 
-module.exports.postLogin = (req,res) => 
-{
-    res.cookie("userId",1,
-    {
-        signed: true
-    })
-    res.redirect('/');
-}
+module.exports.postLogin = passport.authenticate('local', { 
+                                    successRedirect: '/',
+                                    failureRedirect: '/login'
+                                })
