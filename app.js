@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
+import session from "express-session";
 
 import "./passport"
 
@@ -24,6 +25,11 @@ app.use(cookieParser("devbjhdbfbdjfb"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(session({
+    secret:process.env.COOKIE_SECRET,
+    resave:true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
