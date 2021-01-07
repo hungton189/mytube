@@ -1,4 +1,4 @@
-module.exports.postJoin = (req,res,next) => 
+module.exports.postJoinValidation = (req,res,next) => 
 {
     let errors = [];
     const {body:

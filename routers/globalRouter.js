@@ -1,20 +1,30 @@
 import express from 'express'
 
 import routers from "../routers";
-import videoControllers from "../controllers/videoControllers";
-import userControllers from "../controllers/userControllers";
-import userValidation from "../validation/userValidation";
-import {onlyPrivate,onlyPublic} from "../middleware"
+import passport from "passport";
+import {login,join,postJoin,postLogin,logout,githubLogin} from "../controllers/userControllers";
+import {postJoinValidation} from "../validation/userValidation";
+import {onlyPrivate,onlyPublic} from "../middleware";
+import {home,search} from "../controllers/videoControllers"
 
 const globalRouter = express.Router();
 
-globalRouter.get(routers.home,videoControllers.home);
-globalRouter.get(routers.login,onlyPublic,userControllers.login);
-globalRouter.get(routers.join,onlyPublic,userControllers.join);
-globalRouter.get(routers.search, videoControllers.search);
-globalRouter.get(routers.logout,onlyPrivate,userControllers.logout);
+globalRouter.get(routers.home, home);
+globalRouter.get(routers.login,onlyPublic,login);
+globalRouter.get(routers.join,onlyPublic,join);
+globalRouter.get(routers.search, search);
+globalRouter.get(routers.logout,onlyPrivate,logout);
 
-globalRouter.post(routers.join,onlyPublic,userValidation.postJoin, userControllers.postJoin,userControllers.postLogin);
-globalRouter.post(routers.login,onlyPublic,userValidation.postLogin, userControllers.postLogin);
+globalRouter.post(routers.join,onlyPublic,postJoinValidation, postJoin,postLogin);
+globalRouter.post(routers.login,onlyPublic,postLogin, postLogin);
+
+globalRouter.get('/auth/github',githubLogin);
+
+globalRouter.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res)=>{
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 module.exports = globalRouter;

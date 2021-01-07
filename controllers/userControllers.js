@@ -83,3 +83,35 @@ module.exports.postLogin = passport.authenticate('local', {
                                     successRedirect: '/',
                                     failureRedirect: '/login'
                                 })
+module.exports.githubLoginCallback = async(accessToken, refreshToken, profile, cb)=> {
+    const {_json:{id,avatar_url,name,email}} = profile;
+    try {
+        const user = await User.findOne({email: email});
+        if(user)
+        {
+            user.githubId = id;
+            user.save();
+            const {avatarUrl} = user;
+            if(!avatarUrl)
+            {
+                user.avatarUrl = avatar_url;
+                user.save();
+            }
+            return cb(null, user);
+        }
+        else
+        {
+            const newUser = await User.create({
+                name,
+                email,
+                avatarUrl: avatar_url,
+                githubId: id
+            })
+            return cb(null, newUser);
+        }
+    } catch (error) {
+        return cb(error);
+    }
+}
+
+module.exports.githubLogin = passport.authenticate('github');
