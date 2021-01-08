@@ -2,7 +2,7 @@ import express from 'express'
 
 import routers from "../routers";
 import passport from "passport";
-import {login,join,postJoin,postLogin,logout,githubLogin,getMe} from "../controllers/userControllers";
+import {login,join,postJoin,postLogin,logout,githubLogin,getMe,facebookLogin} from "../controllers/userControllers";
 import {postJoinValidation} from "../validation/userValidation";
 import {onlyPrivate,onlyPublic} from "../middleware";
 import {home,search} from "../controllers/videoControllers"
@@ -24,6 +24,17 @@ globalRouter.get('/auth/github',githubLogin);
 globalRouter.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   (req, res)=>{
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+
+
+globalRouter.get('/auth/facebook',facebookLogin);
+
+globalRouter.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
   });
