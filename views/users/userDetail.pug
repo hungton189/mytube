@@ -1,3 +1,7 @@
 extends ../layouts/main.pug
 block content
-    h1=userId
+    .profile
+        .profile_image
+            img(src=userProfile.avatarUrl,alt="Your Image",width="160px")
+        .profile_name
+            h2=userProfile.name

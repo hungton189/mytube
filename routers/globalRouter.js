@@ -2,7 +2,7 @@ import express from 'express'
 
 import routers from "../routers";
 import passport from "passport";
-import {login,join,postJoin,postLogin,logout,githubLogin} from "../controllers/userControllers";
+import {login,join,postJoin,postLogin,logout,githubLogin,getMe} from "../controllers/userControllers";
 import {postJoinValidation} from "../validation/userValidation";
 import {onlyPrivate,onlyPublic} from "../middleware";
 import {home,search} from "../controllers/videoControllers"
@@ -10,6 +10,7 @@ import {home,search} from "../controllers/videoControllers"
 const globalRouter = express.Router();
 
 globalRouter.get(routers.home, home);
+globalRouter.get("/me", getMe);
 globalRouter.get(routers.login,onlyPublic,login);
 globalRouter.get(routers.join,onlyPublic,join);
 globalRouter.get(routers.search, search);

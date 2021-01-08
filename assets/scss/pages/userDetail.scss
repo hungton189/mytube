@@ -1,0 +1,15 @@
+.profile
+{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    .profile_image
+    {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 3px solid rgb(120, 166, 235);
+        margin: 0 auto;
+    }
+}

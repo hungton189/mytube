@@ -31,13 +31,12 @@ module.exports.changePassword = (req,res) =>
     });
 }
 
-module.exports.userDetail = (req,res) => 
+module.exports.getMe = (req,res) => 
 {
-    const userId = req.params.id;
     res.render('users/userDetail',
     {
         pageTitle:"Profile",
-        userId
+        userProfile:req.user
     });
 }
 
@@ -83,6 +82,7 @@ module.exports.postLogin = passport.authenticate('local', {
                                     successRedirect: '/',
                                     failureRedirect: '/login'
                                 })
+
 module.exports.githubLoginCallback = async(accessToken, refreshToken, profile, cb)=> {
     const {_json:{id,avatar_url,name,email}} = profile;
     try {
@@ -115,3 +115,18 @@ module.exports.githubLoginCallback = async(accessToken, refreshToken, profile, c
 }
 
 module.exports.githubLogin = passport.authenticate('github');
+
+module.exports.userDetail = async(req,res) =>
+{
+    const {id} = req.params;
+    try {
+        const user = await User.findById(id);
+        res.render('users/userDetail',
+        {
+            pageTitle:"Profile",
+            userProfile:user
+        });
+    } catch (error) {
+        res.redirect("/");
+    }
+}
