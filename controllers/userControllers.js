@@ -36,7 +36,7 @@ module.exports.getMe = (req,res) =>
     res.render('users/userDetail',
     {
         pageTitle:"Profile",
-        userProfile:req.user
+        user:req.user
     });
 }
 
@@ -157,7 +157,7 @@ module.exports.userDetail = async(req,res) =>
         res.render('users/userDetail',
         {
             pageTitle:"Profile",
-            userProfile:user
+            user:user
         });
     } catch (error) {
         res.redirect("/");

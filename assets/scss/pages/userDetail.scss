@@ -1,15 +1,42 @@
 .profile
 {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 650px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .profile_image
     {
-        width: 160px;
-        height: 160px;
         border-radius: 50%;
-        border: 3px solid rgb(120, 166, 235);
-        margin: 0 auto;
+        border: 1px solid #000;
+        img
+        {
+        }
+        margin-bottom: 12px;
+    }
+    .profile_name
+    {
+        margin-bottom: 12px;
+    }
+    .profile_btns
+    {
+        a
+        {
+            display: block;
+            text-align: center;
+            padding: 8px 20px;
+            background-color: blue;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            border-radius: 6px;
+            color: #fff;
+            transition-duration: .2;
+            &:not(:last-child)
+            {
+                margin-bottom: 8px;
+            }
+            &:hover
+            {
+                opacity: .7;
+            }
+
+        }
     }
 }

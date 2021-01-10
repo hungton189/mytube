@@ -4,7 +4,7 @@ import routers from "./routers"
 module.exports.locals = (req, res , next) =>
 {
     res.locals.routers = routers;
-    res.locals.user = req.user || null;
+    res.locals.loggedUser = req.user || null;
     next();
 }
 

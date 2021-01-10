@@ -8,7 +8,7 @@ header.header
                 input(type="text",name="search",placeholder="Searching for.....")
         .header_column
             ul
-                if !user
+                if !loggedUser
                     li
                         a(href=routers.join) Join
                     li
