@@ -1,12 +1,11 @@
 extends ../layouts/main.pug
 block content
     .form_container
-        form(action=routers.editProfile, method="post")
+        form(action="/users/edit-profile", method="post",,enctype="multipart/form-data")
             label(for = "avatar") Avatar:
-            input(type="file",name="avatar" required="true")
+            input(type="file",name="avatar")
             label(for = "name") Name:
-            input(type="text",name="name" required="true")
+            input(type="text",name="name",required="true",value=user.name)
             label(for = "email") Email:
-            input(type="text",name="email" required="true")
+            input(type="text",name="email",required="true",value=user.email)
             input(type="submit" value="Update Profile")
-            a.change_password(href="/users/change-password") Change Password

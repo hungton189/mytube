@@ -31,21 +31,60 @@ module.exports.changePassword = (req,res) =>
     });
 }
 
-module.exports.getMe = (req,res) => 
+module.exports.getMe = async(req,res) => 
 {
-    res.render('users/userDetail',
-    {
-        pageTitle:"Profile",
-        user:req.user
-    });
+    const {_id} = req.user;
+    try {
+        const user = await User.findById(_id);
+        res.render('users/userDetail',
+        {
+            pageTitle:"Profile",
+            user
+        });
+    } catch (error) {
+        
+    }
 }
 
-module.exports.editProfile = (req,res) => 
+module.exports.editProfile = async(req,res) => 
 {
-    res.render('users/editProfile',
-    {
-        pageTitle:"Edit Profile"
-    });
+    const {_id} = req.user;
+    try {
+        const user = await User.findById(_id);
+        res.render('users/editProfile',
+        {
+            pageTitle:"Edit Profile",
+            user
+        });
+    } catch (error) {
+        
+    }
+}
+
+module.exports.postEditProfile = async(req,res) => 
+{
+    console.log(req.user);
+    const {
+        body:{name,email},
+        file   
+    } = req;
+    try {
+        const user = await User.findByIdAndUpdate(req.user._id,
+            {
+                name,
+                email,
+                avatarUrl:file ? (file.destination + file.filename) : req.user.avatarUrl
+            });
+            req.user = user;
+            console.log("ok");
+            res.redirect("/me");
+    } catch (error) {
+        res.render('users/editProfile',
+        {
+            pageTitle:"Edit Profile"
+        });
+    }
+
 }
 
 module.exports.postJoin = async (req,res,next) => 

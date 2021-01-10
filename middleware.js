@@ -33,3 +33,5 @@ module.exports.onlyPrivate = (req, res, next) =>
 }
 const multerVideo = multer({ dest: 'uploads/Videos/' });
 module.exports.uploadVideo = multerVideo.single("videoFile");
+const multerAvatar = multer({ dest: 'uploads/Avatars/' });
+module.exports.uploadAvatar = multerAvatar.single("avatar");
