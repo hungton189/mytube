@@ -1,6 +1,7 @@
 // login logout join /users
 import User from "../models/User";
 import passport from "passport";
+import Video from "../models/Video";
 
 module.exports.login = (req,res) => 
 {
@@ -65,10 +66,12 @@ module.exports.getMe = async(req,res) =>
     const {_id} = req.user;
     try {
         const user = await User.findById(_id);
+        const videos = await Video.find({creator:_id})
         res.render('users/userDetail',
         {
             pageTitle:"Profile",
-            user
+            user,
+            videos
         });
     } catch (error) {
         res.redirect("/");
@@ -80,10 +83,12 @@ module.exports.userDetail = async(req,res) =>
     const {id} = req.params;
     try {
         const user = await User.findById(id);
+        const videos = await Video.find({creator:id})
         res.render('users/userDetail',
         {
             pageTitle:"Profile",
-            user:user
+            user:user,
+            videos
         });
     } catch (error) {
         res.redirect("/");

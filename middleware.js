@@ -22,8 +22,10 @@ module.exports.onlyPublic = (req, res, next) =>
 
 module.exports.onlyPrivate = (req, res, next) =>
 {
+    console.log("onlyPrivate");
     if(!req.user)
     {
+        console.log("No")
         res.redirect("/");
     }
     else

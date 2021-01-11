@@ -61,11 +61,18 @@ module.exports.editVideo = async(req,res) =>
     const {params:{id}} = req;
     try {
         const video = await Video.findById(id);
-        res.render('videos/editVideo',
+        if(video.creator == req.user._id) 
         {
-            pageTitle: 'Edit Video',
-            video
-        });
+            res.render('videos/editVideo',
+            {
+                pageTitle: 'Edit Video',
+                video
+            });
+        }
+        else
+        {
+            res.redirect("/")
+        }
     }
     catch(err) {
         console.error(err);
@@ -75,10 +82,10 @@ module.exports.editVideo = async(req,res) =>
 
 module.exports.postEditVideo = async(req, res, next) => 
 {
-    console.log("start");
     const { params:{id},body:{title,description}} = req;
     try {
         await Video.findByIdAndUpdate({_id:id},{title,description});
+
         res.redirect(`/videos/${id}`)
     } catch (error) {
         res.redirect("/");        
@@ -108,7 +115,15 @@ module.exports.deleteVideo = async(req,res) =>
 {
     const { params:{id} } = req;
     try {
-        await Video.findOneAndRemove({_id:id});
+        const video = await Video.findById(id);
+        if(video.creator !== req.user._id) 
+        {
+            throw Error();
+        }
+        else
+        {
+            await Video.findOneAndRemove({_id:id});
+        }
     } catch (error) {
         
     }
