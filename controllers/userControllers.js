@@ -31,6 +31,35 @@ module.exports.changePassword = (req,res) =>
     });
 }
 
+module.exports.postChangePassword = async(req,res) => 
+{
+    const {body:{currentPassword,password,password2}} = req;
+    if(password !== password2)
+    {
+        res.render('users/changePassword',
+        {
+            pageTitle:"Change Password",
+            error:"Mật khẩu mới không chính xác."
+        });
+        return;
+    }
+    try 
+    {
+        const user = await User.findById(req.user._id);
+        await user.changePassword(currentPassword,password);
+        console.log("OK")
+        res.redirect("/me");
+    } 
+    catch (error) {
+        console.log(error);
+        res.render('users/changePassword',
+        {
+            pageTitle:"Change Password",
+            error:"Mật khẩu cũ không chính xác."
+        });
+    }
+}
+
 module.exports.getMe = async(req,res) => 
 {
     const {_id} = req.user;
