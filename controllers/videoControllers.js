@@ -49,7 +49,9 @@ module.exports.postUploadVideo = async (req, res) =>
     const newVideo = await Video.create({
         fileUrl: destination+filename,
         title,
-        description,});
+        description,
+        creator:req.user._id,
+    });
     console.log("newVideo:"+newVideo);
     res.redirect("/videos/"+newVideo.id);   //redirect to new video detail
 }
@@ -87,7 +89,7 @@ module.exports.postEditVideo = async(req, res, next) =>
 module.exports.videoDetail = async(req,res) => 
 {
     const videoId = req.params.id;
-    const video = await Video.findById(videoId);
+    const video = await Video.findById(videoId).populate("creator");
     try {
         res.render('videos/videoDetail',
     {

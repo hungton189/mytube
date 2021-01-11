@@ -4,10 +4,15 @@ block content
         .video_player
             video(src=`/${video.fileUrl}`,controls = true,width="650px")
         .video_info
-            a(href=`/videos/${video.id}/edit`) Edit video
+            if loggedUser
+                if video.creator._id == loggedUser._id
+                    a(href=`/videos/${video.id}/edit`) Edit video
             span.video_title=video.title
             span.video_description=video.description
             span.video_views #{video.views} views
+            .creator 
+                span Uploaded by 
+                a(href=`/users/${video.creator._id}`)=video.creator.name
         .video_comment
             if video.comments.length === 0
                 span.video_comment_number 0 comment

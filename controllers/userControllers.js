@@ -71,7 +71,22 @@ module.exports.getMe = async(req,res) =>
             user
         });
     } catch (error) {
-        
+        res.redirect("/");
+    }
+}
+
+module.exports.userDetail = async(req,res) =>
+{
+    const {id} = req.params;
+    try {
+        const user = await User.findById(id);
+        res.render('users/userDetail',
+        {
+            pageTitle:"Profile",
+            user:user
+        });
+    } catch (error) {
+        res.redirect("/");
     }
 }
 
@@ -105,6 +120,7 @@ module.exports.postEditProfile = async(req,res) =>
                 avatarUrl:file ? (file.destination + file.filename) : req.user.avatarUrl
             });
             req.user = user;
+            req.user.save();
             console.log("ok");
             res.redirect("/me");
     } catch (error) {
@@ -216,18 +232,3 @@ module.exports.facebookLoginCallback = async(accessToken, refreshToken, profile,
 
 module.exports.githubLogin = passport.authenticate('github');
 module.exports.facebookLogin = passport.authenticate('facebook');
-
-module.exports.userDetail = async(req,res) =>
-{
-    const {id} = req.params;
-    try {
-        const user = await User.findById(id);
-        res.render('users/userDetail',
-        {
-            pageTitle:"Profile",
-            user:user
-        });
-    } catch (error) {
-        res.redirect("/");
-    }
-}

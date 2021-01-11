@@ -38,6 +38,21 @@
         .video_description
         {
             font-size: 14px;
+        }
+        .creator
+        {
+            margin-top: 6px;
+            a
+            {
+                background-color:  #f5f5f5;
+                padding: 0;
+                color:$black;
+                font-weight: 600;
+                &:hover
+                {
+                    color: $dark-red;
+                }
+            }
         } 
     }
 }

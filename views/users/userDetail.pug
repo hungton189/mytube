@@ -2,10 +2,11 @@ extends ../layouts/main.pug
 block content
     .profile
         .profile_image
-            img(src=user.avatarUrl,alt="Your Image",width="160px")
+            img(src=`/${user.avatarUrl}`,alt="Your Image",width="160px")
         .profile_name
             h2=user.name
-        if user._id == loggedUser._id
-            .profile_btns
-                a(href="/users/edit-profile") Edit Profile
-                a(href="/users/change-password") Change Password
+        if loggedUser
+            if user._id == loggedUser._id
+                .profile_btns
+                    a(href="/users/edit-profile") Edit Profile
+                    a(href="/users/change-password") Change Password
