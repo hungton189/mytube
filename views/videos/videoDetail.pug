@@ -1,8 +1,10 @@
 extends ../layouts/main.pug
+include ../mixins/videoPlayer
 block content
     .video_detail_container
-        .video_player
-            video(src=`/${video.fileUrl}`,controls = true,width="650px")
+        +videoPlayer({
+				src:video.fileUrl
+		})
         .video_info
             if loggedUser
                 if video.creator._id == loggedUser._id

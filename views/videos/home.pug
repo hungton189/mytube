@@ -1,10 +1,12 @@
 extends ../layouts/main.pug
-include ../mixins/videoBlock
+include ../mixins/videoPlayer
 block content
 	.home_video
 		each video in videos
 			.video_block
-				video.videoBlock_thumbnail(src=video.fileUrl,controls = true,width ="650px")
+				+videoPlayer({
+					src:video.fileUrl
+				})
 				a.video_info(href="/videos/"+video.id)
 					h4.video_title=video.title
 					h4.video_views #{video.views} views

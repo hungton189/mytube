@@ -1,0 +1,56 @@
+.video_player
+{
+    position: relative;
+    &:hover
+    {
+        .video_player_controls
+        {
+            opacity: .8;
+            transition: opacity .4s linear;
+        }
+    }
+    .video_player_controls 
+    {
+        position: absolute;
+        background-color:black;
+        opacity: 0.1;
+        bottom: 0;
+        padding: 15px 0px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        .video_player_controls_column
+        {
+            span
+            {
+                color: #ffffffc0;
+                i
+                {
+                    font-size: 16px;
+                }
+            }
+        }
+        .video_player_controls_column:first-child
+        {
+            margin-left: 10px;
+            span
+            {
+                i
+                {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .video_player_controls_column:nth-child(2)
+        {
+            justify-self: center;
+        }
+
+        .video_player_controls_column:last-child
+        {
+            justify-self: end;
+            margin-right: 10px;
+        }
+    }
+}
