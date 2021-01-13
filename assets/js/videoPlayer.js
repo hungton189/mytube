@@ -1,12 +1,13 @@
 const videoContainer = document.getElementById("jsVideoPlayer");
 let videoPlayer = videoContainer.querySelector("#jsVideoPlayer video");
 const playButton = document.getElementById("jsPlayButton");
-let i=1;
-console.log(videoContainer,i++);
+const volumeButton = document.getElementById("jsVolumeButton");
+console.log(volumeButton.muted);
 
 function init()
 {
-    playButton.addEventListener("click",handlePlayClick)
+    playButton.addEventListener("click",handlePlayClick);
+    volumeButton.addEventListener("click",handleVolumeClick);
 }
 
 function handlePlayClick()
@@ -22,6 +23,21 @@ function handlePlayClick()
         playButton.innerHTML = '<i class="fas fa-play"></i>';
     }
 }
+
+function handleVolumeClick()
+{
+    if(videoPlayer.muted)
+    {
+        videoPlayer.muted = false;
+        volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+    else
+    {
+        videoPlayer.muted = true;
+        volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    }
+}
+
 
 if(videoContainer)
 {
