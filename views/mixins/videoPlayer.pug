@@ -1,6 +1,6 @@
 mixin videoPlayer(video = {})
-    .video_player
-        video.videoBlock_thumbnail(src=`/${video.src}`,controls = true,width ="650px")
+    .video_player#jsVideoPlayer
+        video.videoBlock_thumbnail(src=`/${video.src}`,width ="650px")
         .video_player_controls
             .video_player_controls_column
                 span
@@ -8,7 +8,7 @@ mixin videoPlayer(video = {})
                 span
                     |00:00/10:00
             .video_player_controls_column
-                span
+                span#jsPlayButton
                     i.fas.fa-play
             .video_player_controls_column
                 span
