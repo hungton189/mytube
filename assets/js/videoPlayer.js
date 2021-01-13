@@ -2,12 +2,13 @@ const videoContainer = document.getElementById("jsVideoPlayer");
 let videoPlayer = videoContainer.querySelector("#jsVideoPlayer video");
 const playButton = document.getElementById("jsPlayButton");
 const volumeButton = document.getElementById("jsVolumeButton");
-console.log(volumeButton.muted);
+const fullScreenButton = document.getElementById("jsFullScreen");
 
 function init()
 {
     playButton.addEventListener("click",handlePlayClick);
     volumeButton.addEventListener("click",handleVolumeClick);
+    fullScreenButton.addEventListener("click",goFullScreenClick);
 }
 
 function handlePlayClick()
@@ -37,6 +38,23 @@ function handleVolumeClick()
         volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
     }
 }
+
+function goFullScreenClick()
+{
+    videoContainer.requestFullscreen();
+    fullScreenButton.innerHTML= '<i class="fas fa-compress"></i>';
+    fullScreenButton.removeEventListener("click",goFullScreenClick);
+    fullScreenButton.addEventListener("click",removeFullScreenClick);
+}
+
+function removeFullScreenClick()
+{
+    document.exitFullscreen();
+    fullScreenButton.innerHTML= '<i class="fas fa-expand"></i>';
+    fullScreenButton.removeEventListener("click",removeFullScreenClick);
+    fullScreenButton.addEventListener("click",goFullScreenClick);
+}
+
 
 
 if(videoContainer)

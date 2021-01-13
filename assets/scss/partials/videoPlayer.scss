@@ -1,6 +1,11 @@
 .video_player
 {
     position: relative;
+    video
+    {
+        width: 100%;
+        max-width: 100%;
+    }
     &:hover
     {
         .video_player_controls
@@ -23,6 +28,7 @@
         {
             span
             {
+                cursor: pointer;
                 color: #ffffffc0;
                 i
                 {

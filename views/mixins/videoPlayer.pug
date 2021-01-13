@@ -1,6 +1,6 @@
 mixin videoPlayer(video = {})
     .video_player#jsVideoPlayer
-        video.videoBlock_thumbnail(src=`/${video.src}`,width ="650px")
+        video.videoBlock_thumbnail(src=`/${video.src}`)
         .video_player_controls
             .video_player_controls_column
                 span#jsVolumeButton
@@ -11,5 +11,5 @@ mixin videoPlayer(video = {})
                 span#jsPlayButton
                     i.fas.fa-play
             .video_player_controls_column
-                span
+                span#jsFullScreen
                     i.fas.fa-expand
