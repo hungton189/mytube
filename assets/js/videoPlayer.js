@@ -3,12 +3,15 @@ let videoPlayer = videoContainer.querySelector("#jsVideoPlayer video");
 const playButton = document.getElementById("jsPlayButton");
 const volumeButton = document.getElementById("jsVolumeButton");
 const fullScreenButton = document.getElementById("jsFullScreen");
+const currentTime = document.getElementById("currentTime");
+const totalTime = document.getElementById("totalTime");
 
 function init()
 {
     playButton.addEventListener("click",handlePlayClick);
     volumeButton.addEventListener("click",handleVolumeClick);
     fullScreenButton.addEventListener("click",goFullScreenClick);
+    videoPlayer.addEventListener("loadeddata",setTotalTime);
 }
 
 function handlePlayClick()
@@ -60,4 +63,36 @@ function removeFullScreenClick()
 if(videoContainer)
 {
     init();
+}
+
+const formatTime = seconds =>
+{
+    const secondsNumber = parseInt(seconds,10);
+    let hours = Math.floor(secondsNumber/3600);
+    let minutes = Math.floor((secondsNumber - hours * 3600) / 60);
+    let totalSeconds = secondsNumber  - hours * 3600 - minutes * 60;
+
+    if(hours < 10) hours = `0${hours}`;
+    if(minutes < 10) minutes = `0${minutes}`;
+    if(totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
+    if(hours === "00") return `${minutes}:${totalSeconds}`;
+    return `${hours}:${minutes}:${totalSeconds}`;
+
+}
+
+function setTotalTime()
+{
+    const totalTimeString = formatTime(videoPlayer.duration);
+    totalTime.innerHTML = totalTimeString;
+    setInterval(getCurrentTime,1000);
+}
+
+function getCurrentTime()
+{
+    currentTime.innerHTML = formatTime(videoPlayer.currentTime);
+    if(videoPlayer.currentTime ===videoPlayer.duration)
+    {
+        playButton.innerHTML = '<i class="fas fa-play"></i>';
+        videoPlayer.currentTime = 0;
+    } 
 }
