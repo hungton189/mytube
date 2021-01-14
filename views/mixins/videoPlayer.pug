@@ -1,7 +1,7 @@
 mixin videoPlayer(video = {})
     .video_player#jsVideoPlayer
         video.videoBlock_thumbnail(src=`/${video.src}`)
-        .video_player_controls
+        .video_player_controls#jsVideoPlayerControls
             .video_player_controls_column
                 span#jsVolumeButton
                     i.fas.fa-volume-up
@@ -9,6 +9,7 @@ mixin videoPlayer(video = {})
                     span#currentTime 00:00:00
                     |/
                     span#totalTime 00:00:00
+                input.video_player_volume#jsVolume(type="range", min="0",max="1", step="0.1")
             .video_player_controls_column
                 span#jsPlayButton
                     i.fas.fa-play

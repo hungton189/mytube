@@ -26,6 +26,7 @@
         grid-template-columns: repeat(3, 1fr);
         .video_player_controls_column
         {
+            position: relative;
             span
             {
                 cursor: pointer;
@@ -34,6 +35,19 @@
                 {
                     font-size: 16px;
                 }
+            }
+            .video_player_volume
+            {
+                position: absolute;
+                bottom: 76px;
+                left: -58px;
+                transform: rotate(-90deg);
+                cursor: pointer;
+                opacity: 0;
+            }
+            input
+            {
+                background-color: rgba(0, 0, 0, 0.7);
             }
         }
         .video_player_controls_column:first-child
