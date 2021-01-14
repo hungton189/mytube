@@ -1,5 +1,5 @@
 const videoContainer = document.getElementById("jsVideoPlayer");
-let videoPlayer = videoContainer.querySelector("#jsVideoPlayer video");
+let videoPlayer; 
 const playButton = document.getElementById("jsPlayButton");
 const volumeButton = document.getElementById("jsVolumeButton");
 const fullScreenButton = document.getElementById("jsFullScreen");
@@ -10,6 +10,7 @@ const videoPlayerControl = document.getElementById("jsVideoPlayerControls");
 
 function init()
 {
+    videoPlayer = videoContainer.querySelector("#jsVideoPlayer video");
     videoPlayer.volume = 0.5;
     playButton.addEventListener("click",handlePlayClick);
     volumeButton.addEventListener("click",handleVolumeClick);
@@ -90,6 +91,7 @@ const formatTime = seconds =>
 
 function setTotalTime()
 {
+    console.log(videoPlayer.duration)
     const totalTimeString = formatTime(videoPlayer.duration);
     totalTime.innerHTML = totalTimeString;
     setInterval(getCurrentTime,1000);

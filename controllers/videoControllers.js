@@ -116,7 +116,7 @@ module.exports.deleteVideo = async(req,res) =>
     const { params:{id} } = req;
     try {
         const video = await Video.findById(id);
-        if(video.creator !== req.user._id) 
+        if(video.creator != req.user._id) 
         {
             throw Error();
         }

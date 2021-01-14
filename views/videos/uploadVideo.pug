@@ -1,9 +1,12 @@
 extends ../layouts/main.pug
 block content
     .form_container
+        .record_container#jsRecorderContainer
+            video#jsVideoUploadPreview
+            button#jsRecordBtn Start Recording
         form(action=routers.uploadVideo,method="post",enctype="multipart/form-data")
             span.text(for="video") Video:
-            input(type="file", name="videoFile" required="true" accept="video/*")
+            input(type="file", name="videoFile" required="true" accept="video/*,.mkv")
             span.text(for="title") Title:
             input(type="text", name="title",placeholder="Title" required="true")
             span.text(for="description") Description:
