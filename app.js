@@ -17,6 +17,7 @@ import routers from "./routers"
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
+import apiRouter from "./routers/apiRouter";
 
 const app = express()
 
@@ -44,6 +45,7 @@ app.use(middleware.locals);
 app.use(routers.videos,videoRouter);
 app.use(routers.home,globalRouter);
 app.use(routers.users,userRouter);
+app.use("/api",apiRouter);
 
 
 module.exports = app;

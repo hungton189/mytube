@@ -104,6 +104,7 @@ function getCurrentTime()
     {
         playButton.innerHTML = '<i class="fas fa-play"></i>';
         videoPlayer.currentTime = 0;
+        registerView();
     } 
 }
 
@@ -123,4 +124,10 @@ function handleDrag(event)
     {
         volumeButton.innerHTML = '<i class="fas fa-volume-off"></i>';
     }
+}
+
+const registerView = () =>
+{
+    const videoId = window.location.href.split("/videos/")[1];
+    fetch(`/api/${videoId}/view`,{method:"POST"});
 }
