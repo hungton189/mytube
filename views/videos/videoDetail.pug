@@ -16,7 +16,13 @@ block content
                 span Uploaded by 
                 a(href=`/users/${video.creator._id}`)=video.creator.name
         .video_comment
-            if video.comments.length === 0
-                span.video_comment_number 0 comment
-            else
-                span.video_comment_number #{video.comments.length} comment
+            .video_comment_number
+                span#jsCommentsNumber=video.comments.length
+                |  Comments
+            if loggedUser
+                form.add_comment#jsAddComment
+                    input(type="text",placeholder="Add your comment",name="comment")
+            ul.list_comment#jsListComment
+                each comment in video.comments.reverse()
+                    li
+                        span=comment.text

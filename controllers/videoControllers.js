@@ -1,5 +1,7 @@
 // home search /videos
 import Video from "../models/Video"
+import Comment from "../models/Comment"
+
 module.exports.home = async(req,res) => 
 {
     try 
@@ -96,7 +98,9 @@ module.exports.postEditVideo = async(req, res, next) =>
 module.exports.videoDetail = async(req,res) => 
 {
     const videoId = req.params.id;
-    const video = await Video.findById(videoId).populate("creator");
+    const video = await Video.findById(videoId)
+                            .populate("creator")
+                            .populate("comments");
     try {
         res.render('videos/videoDetail',
     {
@@ -140,6 +144,30 @@ module.exports.registerView = async(req,res)=>
         video.views +=1;
         video.save();
         res.status(200);
+    } catch (error) {
+        res.status(400);
+    }
+    finally
+    {
+        res.end();
+    }
+}
+
+module.exports.addComment = async(req,res)=>
+{
+    const {
+        params:{id},
+        body:{comment},
+        user
+    } = req;
+    try {
+        const video = await Video.findById(id);
+        const newComment = await Comment.create({
+            text:comment,
+            creator:user._id
+        });
+        video.comments.push(newComment._id);
+        video.save();
     } catch (error) {
         res.status(400);
     }
