@@ -8,9 +8,9 @@ block content
         else
             each video in videos
                 .video_block
-                    +videoPlayer({
-					    src:video.fileUrl
-				    })
-                    a.video_info(href="/videos/"+video.id)
-                        h4.video_title=video.title
-                        h4.video_views #{video.views} views
+                    a(href="/videos/"+video.id)
+                        .video_player
+                            video.videoBlock_thumbnail(src=video.fileUrl)
+                        .video_info
+                            h4.video_title=video.title
+                            h4.video_views #{video.views} views

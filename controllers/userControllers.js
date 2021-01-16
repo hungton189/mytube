@@ -115,14 +115,14 @@ module.exports.postEditProfile = async(req,res) =>
     console.log(req.user);
     const {
         body:{name,email},
-        file   
+        file
     } = req;
     try {
         const user = await User.findByIdAndUpdate(req.user._id,
             {
                 name,
                 email,
-                avatarUrl:file ? (file.destination + file.filename) : req.user.avatarUrl
+                avatarUrl:file ? (file.location) : req.user.avatarUrl
             });
             req.user = user;
             req.user.save();

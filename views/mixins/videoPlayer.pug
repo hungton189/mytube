@@ -1,6 +1,6 @@
 mixin videoPlayer(video = {})
     .video_player#jsVideoPlayer
-        video.videoBlock_thumbnail(src=`/${video.src}`)
+        video.videoBlock_thumbnail(src=`${video.src}`,type="video/*")
         .video_player_controls#jsVideoPlayerControls
             .video_player_controls_column
                 span#jsVolumeButton

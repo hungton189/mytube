@@ -46,15 +46,14 @@ module.exports.postUploadVideo = async (req, res) =>
 {
     const   {
                 body:{title,description},
-                file:{destination,filename}
+                file:{location}
             } = req;
     const newVideo = await Video.create({
-        fileUrl: destination+filename,
+        fileUrl: location,
         title,
         description,
         creator:req.user._id,
     });
-    console.log("newVideo:"+newVideo);
     res.redirect("/videos/"+newVideo.id);   //redirect to new video detail
 }
 
